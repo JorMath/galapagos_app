@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Enums\ItineraryType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\Boat;
 
 class StoreDepartureRequest extends FormRequest
 {
@@ -30,7 +31,20 @@ class StoreDepartureRequest extends FormRequest
             'departure_at' => ['required', 'date'],
             'departure_port' => ['required', 'string', 'max:255'],
             'itinerary_type' => ['required', Rule::in($itineraryTypes)],
-            'reserved_passengers' => ['nullable', 'integer', 'min:0'],
+            'reserved_passengers' => [
+                'nullable',
+                'integer',
+                'min:0',
+                function ($attribute, $value, $fail) {
+                    $boatId = $this->input('boat_id');
+                    if ($boatId && $value !== null) {
+                        $boat = Boat::find($boatId);
+                        if ($boat && $value > $boat->passenger_capacity) {
+                            $fail("La capacidad máxima del barco es {$boat->passenger_capacity} pasajeros.");
+                        }
+                    }
+                },
+            ],
             'price_per_person' => ['required', 'numeric', 'min:0'],
         ];
     }
