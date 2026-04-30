@@ -15,6 +15,18 @@ class UpdateBoatRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        if ($this->has('is_active')) {
+            $this->merge([
+                'is_active' => $this->is_active === 'on' ? true : false,
+            ]);
+        }
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -26,7 +38,7 @@ class UpdateBoatRequest extends FormRequest
             'image' => ['nullable', 'image', 'max:2048'],
             'passenger_capacity' => ['sometimes', 'required', 'integer', 'min:1'],
             'description' => ['nullable', 'string'],
-            'is_active' => ['boolean'],
+            'is_active' => ['nullable', 'boolean'],
         ];
     }
 
