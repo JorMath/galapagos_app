@@ -42,21 +42,27 @@
 
                 <!-- Imagen -->
                 <div>
-                    <label for="image" class="form-label">Imagen</label>
-                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 transition-colors cursor-pointer" id="dropzone">
-                        <div class="space-y-1 text-center">
-                            <img id="preview" class="mx-auto h-48 w-auto object-cover rounded-lg hidden" alt="Preview">
-                            <div id="placeholder">
-                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <p class="mt-1 text-sm text-gray-600">
-                                    <label for="image" class="relative cursor-pointer rounded-md font-medium text-gray-900 hover:text-gray-700">
-                                        <span>Subir archivo</span>
-                                        <input type="file" name="image" id="image" class="sr-only" accept="image/*">
-                                    </label>
-                                </p>
-                                <p class="text-xs text-gray-500">PNG, JPG hasta 2MB</p>
+                    <label for="image" class="form-label">Imagen del Barco</label>
+                    <div class="relative mt-1" id="dropzone-container">
+                        <div id="dropzone" class="flex flex-col items-center justify-center px-6 py-8 border-2 border-gray-200 border-dashed rounded-xl bg-gray-50 hover:bg-gray-100 hover:border-gray-300 transition-all duration-200 cursor-pointer group">
+                            <!-- Preview Image -->
+                            <img id="preview" class="max-h-64 w-auto object-contain rounded-lg shadow-md hidden mb-4" alt="Preview">
+                            <!-- Placeholder -->
+                            <div id="placeholder" class="text-center">
+                                <div class="mx-auto w-16 h-16 mb-4 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-gray-300 transition-colors">
+                                    <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-3">Arrastra una imagen o haz clic para seleccionar</p>
+                                <label for="image" class="btn-secondary cursor-pointer inline-flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                                    </svg>
+                                    <span>Subir Imagen</span>
+                                    <input type="file" name="image" id="image" class="sr-only" accept="image/*">
+                                </label>
+                                <p class="text-xs text-gray-400 mt-2">PNG, JPG hasta 2MB</p>
                             </div>
                         </div>
                     </div>

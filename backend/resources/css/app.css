@@ -110,3 +110,31 @@
         scroll-behavior: smooth;
     }
 }
+
+/* Select custom arrow */
+@layer components {
+    /* Select con flecha personalizada */
+    select.form-input {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 1.25rem 1.25rem;
+        padding-right: 2.5rem;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    /* Datetime-local input */
+    input[type="datetime-local"] {
+        @apply w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200;
+    }
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        @apply text-gray-400 cursor-pointer hover:text-gray-600;
+        filter: opacity(0.6);
+    }
+
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+        filter: opacity(1);
+    }
+}
