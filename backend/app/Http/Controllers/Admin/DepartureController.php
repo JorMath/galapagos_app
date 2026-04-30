@@ -45,7 +45,7 @@ class DepartureController extends Controller
 
         Departure::create($data);
 
-        return redirect()->route('admin.departures.index')
+        return redirect()->route('departures.index')
             ->with('success', 'Salida creada exitosamente.');
     }
 
@@ -68,7 +68,7 @@ class DepartureController extends Controller
 
         $departure->update($data);
 
-        return redirect()->route('admin.departures.index')
+        return redirect()->route('departures.index')
             ->with('success', 'Salida actualizada exitosamente.');
     }
 
@@ -79,7 +79,7 @@ class DepartureController extends Controller
     {
         $departure->delete();
 
-        return redirect()->route('admin.departures.index')
+        return redirect()->route('departures.index')
             ->with('success', 'Salida eliminada exitosamente.');
     }
 }

@@ -47,7 +47,7 @@ class BoatController extends Controller
 
         Boat::create($data);
 
-        return redirect()->route('admin.boats.index')
+        return redirect()->route('boats.index')
             ->with('success', 'Barco creado exitosamente.');
     }
 
@@ -77,7 +77,7 @@ class BoatController extends Controller
 
         $boat->update($data);
 
-        return redirect()->route('admin.boats.index')
+        return redirect()->route('boats.index')
             ->with('success', 'Barco actualizado exitosamente.');
     }
 
@@ -93,7 +93,7 @@ class BoatController extends Controller
 
         $boat->delete();
 
-        return redirect()->route('admin.boats.index')
+        return redirect()->route('boats.index')
             ->with('success', 'Barco eliminado exitosamente.');
     }
 }
