@@ -9,17 +9,8 @@
     <!-- Modal Content -->
     <div class="fixed inset-0 flex items-center justify-center p-4">
         <div class="relative bg-white rounded-xl shadow-2xl w-full max-w-md transform transition-all" id="confirmModalPanel">
-            <!-- Icono de peligro -->
-            <div class="flex justify-center pt-8 pb-4">
-                <div class="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center">
-                    <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                    </svg>
-                </div>
-            </div>
-            
             <!-- Título -->
-            <h2 id="confirmModalTitle" class="font-display text-xl font-medium text-gray-900 text-center px-6">
+            <h2 id="confirmModalTitle" class="font-display text-xl font-medium text-gray-900 text-center px-6 pt-8">
                 ¿Estás seguro?
             </h2>
             
@@ -37,8 +28,8 @@
                 <button type="button" id="confirmModalCancel" class="flex-1 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 transition-colors">
                     Cancelar
                 </button>
-                <button type="button" id="confirmModalConfirm" class="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
-                    Confirmar
+                <button type="button" id="confirmModalConfirm" class="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors">
+                    Eliminar
                 </button>
             </div>
         </div>
