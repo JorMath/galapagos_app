@@ -3,7 +3,7 @@
 @section('header')
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold text-gray-900">Editar Salida</h1>
-        <a href="{{ route('admin.departures.index') }}" class="btn-secondary">
+        <a href="{{ route('departures.index') }}" class="btn-secondary">
             Volver
         </a>
     </div>
@@ -13,7 +13,7 @@
     @include('partials.alert')
 
     <div class="card">
-        <form action="{{ route('admin.departures.update', $departure) }}" method="POST" class="space-y-6">
+        <form action="{{ route('departures.update', $departure) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
 
@@ -92,7 +92,7 @@
 
             <!-- Botones -->
             <div class="flex justify-end gap-3 pt-4">
-                <a href="{{ route('admin.departures.index') }}" class="btn-secondary">
+                <a href="{{ route('departures.index') }}" class="btn-secondary">
                     Cancelar
                 </a>
                 <button type="submit" class="btn-primary">

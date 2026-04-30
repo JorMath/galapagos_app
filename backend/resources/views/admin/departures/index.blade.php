@@ -3,7 +3,7 @@
 @section('header')
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold text-gray-900">Salidas</h1>
-        <a href="{{ route('admin.departures.create') }}" class="btn-primary">
+        <a href="{{ route('departures.create') }}" class="btn-primary">
             Nueva Salida
         </a>
     </div>
@@ -45,11 +45,11 @@
                             </td>
                             <td>
                                 <div class="flex items-center gap-2">
-                                    <a href="{{ route('admin.departures.edit', $departure) }}"
+                                    <a href="{{ route('departures.edit', $departure) }}"
                                        class="text-gray-600 hover:text-gray-900 text-sm font-medium">
                                         Editar
                                     </a>
-                                    <form action="{{ route('admin.departures.destroy', $departure) }}"
+                                    <form action="{{ route('departures.destroy', $departure) }}"
                                           method="POST"
                                           onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta salida?');">
                                         @csrf

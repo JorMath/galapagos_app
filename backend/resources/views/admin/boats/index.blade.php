@@ -3,7 +3,7 @@
 @section('header')
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold text-gray-900">Barcos</h1>
-        <a href="{{ route('admin.boats.create') }}" class="btn-primary">
+        <a href="{{ route('boats.create') }}" class="btn-primary">
             Nuevo Barco
         </a>
     </div>
@@ -53,11 +53,11 @@
                             </td>
                             <td>
                                 <div class="flex items-center gap-2">
-                                    <a href="{{ route('admin.boats.edit', $boat) }}"
+                                    <a href="{{ route('boats.edit', $boat) }}"
                                        class="text-gray-600 hover:text-gray-900 text-sm font-medium">
                                         Editar
                                     </a>
-                                    <form action="{{ route('admin.boats.destroy', $boat) }}"
+                                    <form action="{{ route('boats.destroy', $boat) }}"
                                           method="POST"
                                           onsubmit="return confirm('¿Estás seguro de que deseas eliminar este barco?');">
                                         @csrf
