@@ -1,0 +1,4 @@
+{
+    "$schema": "./vendor/laravel/pint/build/pint.schema.json",
+    "preset": "laravel"
+}
