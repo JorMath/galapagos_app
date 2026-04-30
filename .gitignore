@@ -1,0 +1,78 @@
+# ===========================================
+# Proyecto: Sistema de Gestión de Barcos (Galápagos)
+# Stack: Laravel 11 + React 18 + Vite + SQLite
+# ===========================================
+
+# ---------- Archivos de documentación ----------
+# PRD y documentos de spec
+PRD.md
+SPEC.md
+*.spec.md
+
+# ---------- Archivos de Skills de IA ----------
+# Archivos de configuración de skills y agentes
+*.skill.md
+skill.md
+skills/
+.skills/
+agent-config/
+assistant-config/
+.agents/
+.atl/
+skills-lock.json
+
+# ---------- Archivos generados por IA ----------
+# Archivos de memoria, contexto, logs de agentes
+.aug/
+.august/
+.vec/
+context/
+*.context.json
+agent-log/
+ai-log/
+*.ai-output*
+*.ai-generated*
+
+# ---------- Laravel (Backend) ----------
+/vendor/
+node_modules/
+/.env
+/.env.backup
+/.env.production
+/.phpunit.result.cache
+/bootstrap/cache/*
+storage/app/public/*
+!storage/app/public/.gitkeep
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+*.sqlite
+*.sqlite3
+database/database.sqlite
+database/database.sqlite-journal
+
+# ---------- React/Vite (Frontend) ----------
+/node_modules/
+/dist/
+/build/
+.env.local
+.env.production
+
+# ---------- IDEs y OS ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ---------- Testing ----------
+.phpunit.result.cache
+coverage/
+.htmlcov/
+
+# ---------- Logs ----------
+*.log
+npm-debug.log*
+yarn-error.log*
