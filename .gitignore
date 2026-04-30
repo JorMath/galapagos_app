@@ -33,6 +33,12 @@ ai-log/
 *.ai-output*
 *.ai-generated*
 
+# ---------- Archivos sensibles de configuración ----------
+# Variables de entorno — nunca commitear valores reales
+/.env
+/frontend/.env
+/backend/.env
+
 # ---------- Laravel (Backend) ----------
 /vendor/
 node_modules/
