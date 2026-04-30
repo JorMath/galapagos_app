@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('header')
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center animate-entry">
         <div>
-            <h1 class="text-2xl font-display font-semibold text-gray-900">Barcos</h1>
+            <h1 class="font-display text-2xl font-medium text-gray-900 tracking-wide">Barcos</h1>
             <p class="mt-1 text-sm text-gray-500">Gestiona la flota de barcos turísticos</p>
         </div>
-        <a href="{{ route('boats.create') }}" class="btn-primary flex items-center gap-2">
+        <a href="{{ route('boats.create') }}" class="btn-primary flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white tracking-wide">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -18,61 +18,61 @@
 @section('content')
     @include('partials.alert')
 
-    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <div class="card-elegant overflow-hidden animate-entry delay-100">
         <div class="overflow-x-auto">
-            <table class="w-full">
-                <thead class="bg-gray-50 border-b border-gray-200">
+            <table class="table-elegant">
+                <thead>
                     <tr>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imagen</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capacidad</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
-                        <th class="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                        <th class="w-24">Imagen</th>
+                        <th>Nombre</th>
+                        <th>Capacidad</th>
+                        <th>Descripción</th>
+                        <th class="w-24">Estado</th>
+                        <th class="w-28 text-right">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200">
+                <tbody>
                     @foreach($boats as $boat)
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4 whitespace-nowrap">
+                        <tr>
+                            <td>
                                 @if($boat->image_path)
-                                    <img src="{{ asset('storage/' . $boat->image_path) }}" alt="{{ $boat->name }}" class="w-16 h-16 object-cover rounded-lg shadow-sm">
+                                    <img src="{{ asset('storage/' . $boat->image_path) }}" alt="{{ $boat->name }}" class="w-14 h-14 object-cover border border-gray-200">
                                 @else
-                                    <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="w-14 h-14 bg-gray-100 border border-gray-200 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                         </svg>
                                     </div>
                                 @endif
                             </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm font-medium text-gray-900">{{ $boat->name }}</div>
+                            <td>
+                                <span class="font-medium text-gray-900">{{ $boat->name }}</span>
                             </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-600">{{ $boat->passenger_capacity }} pasajeros</div>
+                            <td>
+                                <span class="text-gray-600">{{ $boat->passenger_capacity }} pasajeros</span>
                             </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-500 max-w-xs truncate">{{ $boat->description ?? 'Sin descripción' }}</div>
+                            <td>
+                                <span class="text-gray-500 max-w-xs block truncate">{{ $boat->description ?? 'Sin descripción' }}</span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td>
                                 @if($boat->is_active)
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Activo</span>
+                                    <span class="badge-elegant badge-active">Activo</span>
                                 @else
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">Inactivo</span>
+                                    <span class="badge-elegant badge-inactive">Inactivo</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <div class="flex w-full items-center justify-end gap-2">
-                                    <a href="{{ route('boats.edit', $boat) }}" class="text-gray-400 hover:text-gray-900 transition-colors p-1.5 flex items-center justify-center">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <td>
+                                <div class="flex items-center justify-end gap-1">
+                                    <a href="{{ route('boats.edit', $boat) }}" class="p-2 text-gray-400 hover:text-gray-900 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                         </svg>
                                     </a>
                                     <form action="{{ route('boats.destroy', $boat) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-gray-400 hover:text-red-600 transition-colors p-1.5 flex items-center justify-center" onclick="return confirm('¿Estás seguro de eliminar este barco?')">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <button type="submit" class="p-2 text-gray-400 hover:text-red-600 transition-colors" onclick="return confirm('¿Estás seguro de eliminar este barco?')">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
                                         </button>
@@ -85,7 +85,7 @@
             </table>
         </div>
         @if($boats->hasPages())
-            <div class="px-6 py-4 border-t border-gray-200">
+            <div class="px-6 py-4 border-t border-gray-100">
                 {{ $boats->links() }}
             </div>
         @endif
