@@ -26,7 +26,7 @@
                 <!-- Nombre -->
                 <div>
                     <label for="name" class="form-label">Nombre del Barco</label>
-                    <input type="text" name="name" id="name" class="form-input" value="{{ old('name', $boat->name) }}" required>
+                    <input type="text" name="name" id="name" class="form-input rounded-lg" value="{{ old('name', $boat->name) }}" required>
                     @error('name')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -35,7 +35,7 @@
                 <!-- Capacidad -->
                 <div>
                     <label for="passenger_capacity" class="form-label">Capacidad de Pasajeros</label>
-                    <input type="number" name="passenger_capacity" id="passenger_capacity" class="form-input" value="{{ old('passenger_capacity', $boat->passenger_capacity) }}" min="1" required>
+                    <input type="number" name="passenger_capacity" id="passenger_capacity" class="form-input rounded-lg" value="{{ old('passenger_capacity', $boat->passenger_capacity) }}" min="1" required>
                     @error('passenger_capacity')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -97,7 +97,7 @@
             <!-- Descripción -->
             <div>
                 <label for="description" class="form-label">Descripción</label>
-                <textarea name="description" id="description" rows="4" class="form-input">{{ old('description', $boat->description) }}</textarea>
+                <textarea name="description" id="description" rows="4" class="form-input rounded-lg">{{ old('description', $boat->description) }}</textarea>
                 @error('description')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror

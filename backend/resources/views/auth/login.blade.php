@@ -13,7 +13,7 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+    <div class="min-h-screen flex items-center justify-center px-4 py-8">
         <!-- Logo -->
         <div class="mb-8">
             <a href="/" class="flex items-center gap-3">
@@ -59,7 +59,7 @@
                                required 
                                autofocus 
                                autocomplete="username"
-                               class="form-input pl-10" 
+                               class="form-input rounded-lg pl-10" 
                                placeholder="tu@email.com">
                     </div>
                     @error('email')
@@ -81,7 +81,7 @@
                                id="password" 
                                required 
                                autocomplete="current-password"
-                               class="form-input pl-10" 
+                               class="form-input rounded-lg pl-10" 
                                placeholder="••••••••">
                     </div>
                     @error('password')
