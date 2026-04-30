@@ -77,9 +77,6 @@
     <div class="w-full max-w-sm">
         <!-- Logo con diseño distintivo -->
         <div class="text-center mb-10 animate-entry">
-            <div class="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gray-900 rounded-none">
-                <span class="text-white font-display text-2xl">G</span>
-            </div>
             <h1 class="font-display text-3xl font-medium text-gray-900 tracking-wide">Galápagos</h1>
             <p class="mt-2 text-xs text-gray-500 uppercase tracking-widest">Admin Panel</p>
         </div>

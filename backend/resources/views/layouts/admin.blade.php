@@ -240,10 +240,7 @@
                     <div class="flex justify-between h-16">
                         <div class="flex items-center gap-12">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center gap-3">
-                                <div class="w-8 h-8 bg-gray-900 flex items-center justify-center">
-                                    <span class="text-white font-display text-sm">G</span>
-                                </div>
+                            <div class="shrink-0 flex items-center">
                                 <a href="{{ route('boats.index') }}" class="font-display text-xl font-medium text-gray-900 tracking-wide">
                                     Galápagos
                                 </a>
