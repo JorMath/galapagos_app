@@ -6,21 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBoatRequest;
 use App\Http\Requests\UpdateBoatRequest;
 use App\Models\Boat;
+use App\Services\BoatService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class BoatController extends Controller
 {
+    public function __construct(
+        private readonly BoatService $boatService
+    ) {}
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
-        $boats = Boat::orderBy('created_at', 'desc')
-            ->paginate(10)
-            ->withQueryString();
+        $boats = $this->boatService->getBoats($request);
 
         return view('admin.boats.index', compact('boats'));
     }
@@ -40,12 +42,7 @@ class BoatController extends Controller
     {
         $data = $request->validated();
 
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('boats', 'public');
-        }
-
-        Boat::create($data);
+        $this->boatService->createBoat($data);
 
         return redirect()->route('boats.index')
             ->with('success', 'Barco creado exitosamente.');
@@ -66,16 +63,7 @@ class BoatController extends Controller
     {
         $data = $request->validated();
 
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($boat->image_path) {
-                Storage::disk('public')->delete($boat->image_path);
-            }
-            $data['image_path'] = $request->file('image')->store('boats', 'public');
-        }
-
-        $boat->update($data);
+        $this->boatService->updateBoat($boat, $data);
 
         return redirect()->route('boats.index')
             ->with('success', 'Barco actualizado exitosamente.');
@@ -86,12 +74,7 @@ class BoatController extends Controller
      */
     public function destroy(Boat $boat): RedirectResponse
     {
-        // Delete image if exists
-        if ($boat->image_path) {
-            Storage::disk('public')->delete($boat->image_path);
-        }
-
-        $boat->delete();
+        $this->boatService->deleteBoat($boat);
 
         return redirect()->route('boats.index')
             ->with('success', 'Barco eliminado exitosamente.');

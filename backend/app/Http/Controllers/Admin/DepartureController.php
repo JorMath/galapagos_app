@@ -5,23 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDepartureRequest;
 use App\Http\Requests\UpdateDepartureRequest;
-use App\Models\Boat;
 use App\Models\Departure;
+use App\Services\DepartureService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DepartureController extends Controller
 {
+    public function __construct(
+        private readonly DepartureService $departureService
+    ) {}
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
-        $departures = Departure::with('boat')
-            ->orderBy('departure_at', 'desc')
-            ->paginate(10)
-            ->withQueryString();
+        $departures = $this->departureService->getDepartures($request);
 
         return view('admin.departures.index', compact('departures'));
     }
@@ -31,7 +32,7 @@ class DepartureController extends Controller
      */
     public function create(): View
     {
-        $boats = Boat::where('is_active', true)->orderBy('name')->get();
+        $boats = $this->departureService->getActiveBoats();
 
         return view('admin.departures.create', compact('boats'));
     }
@@ -43,7 +44,7 @@ class DepartureController extends Controller
     {
         $data = $request->validated();
 
-        Departure::create($data);
+        $this->departureService->createDeparture($data);
 
         return redirect()->route('departures.index')
             ->with('success', 'Salida creada exitosamente.');
@@ -54,7 +55,7 @@ class DepartureController extends Controller
      */
     public function edit(Departure $departure): View
     {
-        $boats = Boat::where('is_active', true)->orderBy('name')->get();
+        $boats = $this->departureService->getActiveBoats();
 
         return view('admin.departures.edit', compact('departure', 'boats'));
     }
@@ -66,7 +67,7 @@ class DepartureController extends Controller
     {
         $data = $request->validated();
 
-        $departure->update($data);
+        $this->departureService->updateDeparture($departure, $data);
 
         return redirect()->route('departures.index')
             ->with('success', 'Salida actualizada exitosamente.');
@@ -77,7 +78,7 @@ class DepartureController extends Controller
      */
     public function destroy(Departure $departure): RedirectResponse
     {
-        $departure->delete();
+        $this->departureService->deleteDeparture($departure);
 
         return redirect()->route('departures.index')
             ->with('success', 'Salida eliminada exitosamente.');
