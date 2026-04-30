@@ -29,13 +29,13 @@
 
                                 <!-- Admin Navigation Links -->
                                 <div class="hidden sm:flex sm:ms-8 sm:space-x-6">
-                                    <a href="{{ route('admin.boats.index') }}"
-                                       class="{{ request()->routeIs('admin.boats.*') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
+                                    <a href="{{ route('boats.index') }}"
+                                       class="{{ request()->routeIs('boats.*') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
                                               inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
                                         Barcos
                                     </a>
-                                    <a href="{{ route('admin.departures.index') }}"
-                                       class="{{ request()->routeIs('admin.departures.*') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
+                                    <a href="{{ route('departures.index') }}"
+                                       class="{{ request()->routeIs('departures.*') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
                                               inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
                                         Salidas
                                     </a>
