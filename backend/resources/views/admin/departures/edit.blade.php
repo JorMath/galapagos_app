@@ -133,8 +133,8 @@
 
             <!-- Botones -->
             <div class="flex justify-end gap-3 pt-4 border-t border-gray-200">
-                <a href="{{ route('departures.index') }}" class="btn-secondary">Cancelar</a>
-                <button type="submit" class="btn-primary">Actualizar Salida</button>
+                <a href="{{ route('departures.index') }}" class="btn-secondary px-5 py-2.5 text-sm font-medium">Cancelar</a>
+                <button type="submit" class="btn-primary px-6 py-2.5 text-sm font-medium text-white tracking-wide">Actualizar Salida</button>
             </div>
         </form>
     </div>
