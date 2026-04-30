@@ -1,110 +1,110 @@
 @extends('layouts.admin')
 
 @section('header')
-    <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-gray-900">Nuevo Barco</h1>
-        <a href="{{ route('boats.index') }}" class="btn-secondary">
-            Volver
+    <div class="flex items-center gap-4">
+        <a href="{{ route('boats.index') }}" class="text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
         </a>
+        <div>
+            <h1 class="text-2xl font-display font-semibold text-gray-900">Nuevo Barco</h1>
+            <p class="mt-1 text-sm text-gray-500">Agrega un nuevo barco a la flota</p>
+        </div>
     </div>
 @endsection
 
 @section('content')
     @include('partials.alert')
 
-    <div class="card">
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <form action="{{ route('boats.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
-            <!-- Nombre -->
-            <div>
-                <label for="name" class="form-label">Nombre del Barco</label>
-                <input type="text"
-                       id="name"
-                       name="name"
-                       class="form-input"
-                       value="{{ old('name') }}"
-                       required>
-            </div>
-
-            <!-- Imagen -->
-            <div>
-                <label for="image" class="form-label">Imagen</label>
-                <div class="mt-2">
-                    <div id="image-preview-container" class="mb-4 hidden">
-                        <img id="image-preview" class="w-48 h-48 object-cover rounded-lg border border-gray-200">
-                    </div>
-                    <input type="file"
-                           id="image"
-                           name="image"
-                           class="form-input"
-                           accept="image/*"
-                           onchange="previewImage(event)">
-                    <p class="mt-1 text-sm text-gray-500">Máx: 2MB. Formatos: JPG, PNG, GIF.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Nombre -->
+                <div>
+                    <label for="name" class="form-label">Nombre del Barco</label>
+                    <input type="text" name="name" id="name" class="form-input" value="{{ old('name') }}" required>
+                    @error('name')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
-            </div>
 
-            <!-- Capacidad -->
-            <div>
-                <label for="passenger_capacity" class="form-label">Capacidad de Pasajeros</label>
-                <input type="number"
-                       id="passenger_capacity"
-                       name="passenger_capacity"
-                       class="form-input"
-                       value="{{ old('passenger_capacity') }}"
-                       min="1"
-                       required>
+                <!-- Capacidad -->
+                <div>
+                    <label for="passenger_capacity" class="form-label">Capacidad de Pasajeros</label>
+                    <input type="number" name="passenger_capacity" id="passenger_capacity" class="form-input" value="{{ old('passenger_capacity') }}" min="1" required>
+                    @error('passenger_capacity')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Imagen -->
+                <div>
+                    <label for="image" class="form-label">Imagen</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400 transition-colors cursor-pointer" id="dropzone">
+                        <div class="space-y-1 text-center">
+                            <img id="preview" class="mx-auto h-48 w-auto object-cover rounded-lg hidden" alt="Preview">
+                            <div id="placeholder">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <p class="mt-1 text-sm text-gray-600">
+                                    <label for="image" class="relative cursor-pointer rounded-md font-medium text-gray-900 hover:text-gray-700">
+                                        <span>Subir archivo</span>
+                                        <input type="file" name="image" id="image" class="sr-only" accept="image/*">
+                                    </label>
+                                </p>
+                                <p class="text-xs text-gray-500">PNG, JPG hasta 2MB</p>
+                            </div>
+                        </div>
+                    </div>
+                    @error('image')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Estado -->
+                <div class="flex items-center">
+                    <input type="checkbox" name="is_active" id="is_active" class="h-4 w-4 text-gray-900 border-gray-300 rounded focus:ring-gray-900" {{ old('is_active', true) ? 'checked' : '' }}>
+                    <label for="is_active" class="ml-2 text-sm font-medium text-gray-700">Barco activo</label>
+                </div>
             </div>
 
             <!-- Descripción -->
             <div>
                 <label for="description" class="form-label">Descripción</label>
-                <textarea id="description"
-                          name="description"
-                          class="form-input"
-                          rows="4">{{ old('description') }}</textarea>
-            </div>
-
-            <!-- Estado -->
-            <div>
-                <label class="flex items-center">
-                    <input type="checkbox"
-                           name="is_active"
-                           value="1"
-                           {{ old('is_active', true) ? 'checked' : '' }}
-                           class="rounded border-gray-300 text-primary-500 focus:ring-primary-500">
-                    <span class="ml-2 text-sm text-gray-600">Activo</span>
-                </label>
+                <textarea name="description" id="description" rows="4" class="form-input">{{ old('description') }}</textarea>
+                @error('description')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Botones -->
-            <div class="flex justify-end gap-3 pt-4">
-                <a href="{{ route('boats.index') }}" class="btn-secondary">
-                    Cancelar
-                </a>
-                <button type="submit" class="btn-primary">
-                    Crear Barco
-                </button>
+            <div class="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                <a href="{{ route('boats.index') }}" class="btn-secondary">Cancelar</a>
+                <button type="submit" class="btn-primary">Guardar Barco</button>
             </div>
         </form>
     </div>
 
     <script>
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const previewContainer = document.getElementById('image-preview-container');
-            const preview = document.getElementById('image-preview');
+        const imageInput = document.getElementById('image');
+        const preview = document.getElementById('preview');
+        const placeholder = document.getElementById('placeholder');
 
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     preview.src = e.target.result;
-                    previewContainer.classList.remove('hidden');
-                };
+                    preview.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                }
                 reader.readAsDataURL(file);
-            } else {
-                previewContainer.classList.add('hidden');
             }
-        }
+        });
     </script>
 @endsection

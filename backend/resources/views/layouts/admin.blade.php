@@ -7,53 +7,68 @@
 
         <title>{{ config('app.name', 'Laravel') }} - Admin</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!-- Fonts - Distinctive typography -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            :root {
+                --font-display: 'Playfair Display', serif;
+                --font-body: 'DM Sans', sans-serif;
+            }
+            body {
+                font-family: var(--font-body);
+            }
+            .font-display {
+                font-family: var(--font-display);
+            }
+        </style>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-50">
+    <body class="font-sans antialiased bg-gray-50">
+        <div class="min-h-screen">
             <!-- Navigation -->
-            <nav class="bg-white border-b border-gray-200">
+            <nav class="bg-white border-b border-gray-200 shadow-sm">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex">
+                        <div class="flex items-center">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
-                                <a href="{{ route('dashboard') }}" class="text-xl font-bold text-gray-900">
+                            <div class="shrink-0 flex items-center gap-3">
+                                <div class="w-8 h-8 bg-gray-900 rounded flex items-center justify-center">
+                                    <span class="text-white font-display text-sm">G</span>
+                                </div>
+                                <a href="{{ route('boats.index') }}" class="font-display text-xl font-semibold text-gray-900 tracking-tight">
                                     Galápagos
                                 </a>
+                            </div>
 
-                                <!-- Admin Navigation Links -->
-                                <div class="hidden sm:flex sm:ms-8 sm:space-x-6">
-                                    <a href="{{ route('boats.index') }}"
-                                       class="{{ request()->routeIs('boats.*') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
-                                              inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
-                                        Barcos
-                                    </a>
-                                    <a href="{{ route('departures.index') }}"
-                                       class="{{ request()->routeIs('departures.*') ? 'border-primary-500 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
-                                              inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
-                                        Salidas
-                                    </a>
-                                </div>
+                            <!-- Admin Navigation Links -->
+                            <div class="hidden sm:ml-10 sm:flex sm:space-x-8">
+                                <a href="{{ route('boats.index') }}"
+                                   class="{{ request()->routeIs('boats.*') ? 'border-gray-900 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
+                                          inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200">
+                                    Barcos
+                                </a>
+                                <a href="{{ route('departures.index') }}"
+                                   class="{{ request()->routeIs('departures.*') ? 'border-gray-900 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }}
+                                          inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200">
+                                    Salidas
+                                </a>
                             </div>
                         </div>
 
                         <!-- Settings Dropdown -->
-                        <div class="hidden sm:flex sm:items-center sm:ms-6">
-                            <div class="flex items-center gap-4">
-                                <span class="text-sm text-gray-600">{{ Auth::user()->name }}</span>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="text-sm text-gray-500 hover:text-gray-700 underline">
-                                        Cerrar sesión
-                                    </button>
-                                </form>
-                            </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-600">{{ Auth::user()->name }}</span>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="text-sm text-gray-400 hover:text-gray-900 transition-colors">
+                                    Cerrar sesión
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -61,7 +76,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
+                <header class="bg-white shadow-sm">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
