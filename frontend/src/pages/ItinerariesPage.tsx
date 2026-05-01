@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import useTimezone from '../hooks/useTimezone';
 import useItineraries from '../hooks/useItineraries';
 import TimezoneSelector from '../components/TimezoneSelector';
@@ -34,6 +35,12 @@ const ItinerariesPage = () => {
           <p className="mt-2 text-gray-500">
             Encuentra salidas y verifica los horarios en tu zona horaria
           </p>
+        </div>
+
+        <div className="mb-6">
+          <Link to="/" className="btn-secondary">
+            Volver a los barcos
+          </Link>
         </div>
 
         {/* Search Form */}
