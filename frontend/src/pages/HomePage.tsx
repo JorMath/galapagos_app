@@ -59,9 +59,9 @@ const HomePage = () => {
         <div className="mt-8 text-center">
           <Link
             to="/itineraries"
-            className="inline-flex items-center text-primary-500 hover:text-primary-600"
+            className="btn-secondary"
           >
-            Ver itinerarios disponibles →
+            Ver itinerarios disponibles
           </Link>
         </div>
       </div>

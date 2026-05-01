@@ -40,8 +40,8 @@ const BoatCard = ({ boat }: BoatCardProps) => {
           </p>
         )}
         <div className="mt-4 pt-4 border-t border-border">
-          <span className="text-sm font-medium text-primary-500">
-            Ver detalles →
+          <span className="btn-secondary text-sm inline-block">
+            Ver detalles
           </span>
         </div>
       </Card>
