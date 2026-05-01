@@ -25,18 +25,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Nombre -->
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nombre del Barco</label>
-                    <input type="text" name="name" id="name" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('name', $boat->name) }}" required>
-                    @error('name')
+                    <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre del Barco</label>
+                    <input type="text" name="nombre" id="nombre" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('nombre', $boat->nombre) }}" required>
+                    @error('nombre')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Capacidad -->
                 <div>
-                    <label for="passenger_capacity" class="block text-sm font-medium text-gray-700 mb-2">Capacidad de Pasajeros</label>
-                    <input type="number" name="passenger_capacity" id="passenger_capacity" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('passenger_capacity', $boat->passenger_capacity) }}" min="1" required>
-                    @error('passenger_capacity')
+                    <label for="capacidad_pasajeros" class="block text-sm font-medium text-gray-700 mb-2">Capacidad de Pasajeros</label>
+                    <input type="number" name="capacidad_pasajeros" id="capacidad_pasajeros" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('capacidad_pasajeros', $boat->capacidad_pasajeros) }}" min="1" required>
+                    @error('capacidad_pasajeros')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
@@ -47,13 +47,13 @@
                     <div class="relative" id="dropzone-container">
                         <div id="dropzone" class="dropzone-elegant flex flex-col items-center justify-center px-6 py-10 cursor-pointer group">
                             <!-- Preview Image -->
-                            @if($boat->image_path)
-                                <img id="preview" src="{{ asset('storage/' . $boat->image_path) }}" class="max-h-56 w-auto object-contain mb-4 border border-gray-200" alt="Imagen actual">
+                            @if($boat->imagen)
+                                <img id="preview" src="{{ asset('storage/' . $boat->imagen) }}" class="max-h-56 w-auto object-contain mb-4 border border-gray-200" alt="Imagen actual">
                             @else
                                 <img id="preview" class="max-h-56 w-auto object-contain mb-4 hidden" alt="Preview">
                             @endif
                             <!-- Placeholder -->
-                            <div id="placeholder" class="text-center {{ $boat->image_path ? 'hidden' : '' }}">
+                            <div id="placeholder" class="text-center {{ $boat->imagen ? 'hidden' : '' }}">
                                 <div class="mx-auto w-14 h-14 mb-4 bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors">
                                     <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -89,16 +89,16 @@
 
                 <!-- Estado -->
                 <div class="flex items-center gap-3">
-                    <input type="checkbox" name="is_active" id="is_active" class="w-4 h-4 text-gray-900 border-gray-300 focus:ring-gray-900" {{ old('is_active', $boat->is_active) ? 'checked' : '' }}>
-                    <label for="is_active" class="text-sm font-medium text-gray-700">Barco activo</label>
+                    <input type="checkbox" name="activo" id="activo" class="w-4 h-4 text-gray-900 border-gray-300 focus:ring-gray-900" {{ old('activo', $boat->activo) ? 'checked' : '' }}>
+                    <label for="activo" class="text-sm font-medium text-gray-700">Barco activo</label>
                 </div>
             </div>
 
             <!-- Descripción -->
             <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
-                <textarea name="description" id="description" rows="4" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none resize-none">{{ old('description', $boat->description) }}</textarea>
-                @error('description')
+                <label for="descripcion" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                <textarea name="descripcion" id="descripcion" rows="4" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none resize-none">{{ old('descripcion', $boat->descripcion) }}</textarea>
+                @error('descripcion')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>

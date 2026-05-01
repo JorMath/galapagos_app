@@ -14,25 +14,25 @@ class BoatSeeder extends Seeder
     {
         $boats = [
             [
-                'name' => 'Galápagos Legend',
-                'image_path' => 'boats/galapagos-legend.jpg',
-                'passenger_capacity' => 100,
-                'description' => 'Un barco de lujo con todas las comodidades modernas, ideal para quienes buscan una experiencia premium en las islas Galápagos.',
-                'is_active' => true,
+                'nombre' => 'Galápagos Legend',
+                'imagen' => 'boats/galapagos-legend.jpg',
+                'capacidad_pasajeros' => 100,
+                'descripcion' => 'Un barco de lujo con todas las comodidades modernas, ideal para quienes buscan una experiencia premium en las islas Galápagos.',
+                'activo' => true,
             ],
             [
-                'name' => 'Eco Explorer',
-                'image_path' => 'boats/eco-explorer.jpg',
-                'passenger_capacity' => 16,
-                'description' => 'Un barco pequeño y ecológico, perfecto para observación de vida silvestre y experiencias íntimas con la naturaleza.',
-                'is_active' => true,
+                'nombre' => 'Eco Explorer',
+                'imagen' => 'boats/eco-explorer.jpg',
+                'capacidad_pasajeros' => 16,
+                'descripcion' => 'Un barco pequeño y ecológico, perfecto para observación de vida silvestre y experiencias íntimas con la naturaleza.',
+                'activo' => true,
             ],
             [
-                'name' => 'Sea Adventure',
-                'image_path' => 'boats/sea-adventure.jpg',
-                'passenger_capacity' => 48,
-                'description' => 'Barco familiar con excelente relación precio-calidad, ofreciendo rutas versátiles por las principales islas del archipiélago.',
-                'is_active' => true,
+                'nombre' => 'Sea Adventure',
+                'imagen' => 'boats/sea-adventure.jpg',
+                'capacidad_pasajeros' => 48,
+                'descripcion' => 'Barco familiar con excelente relación precio-calidad, ofreciendo rutas versátiles por las principales islas del archipiélago.',
+                'activo' => true,
             ],
         ];
 

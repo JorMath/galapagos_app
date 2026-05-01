@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('departures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('boat_id')->constrained()->onDelete('cascade');
-            $table->timestamp('departure_at');
-            $table->string('departure_port');
-            $table->string('itinerary_type');
-            $table->integer('reserved_passengers')->default(0);
-            $table->decimal('price_per_person', 10, 2);
+            $table->foreignId('barco_id')->constrained('boats')->onDelete('cascade');
+            $table->timestamp('fecha_salida');
+            $table->string('puerto_salida');
+            $table->string('itinerario_tipo');
+            $table->integer('pasajeros_reservados')->default(0);
+            $table->decimal('precio', 10, 2);
             $table->timestamps();
         });
     }

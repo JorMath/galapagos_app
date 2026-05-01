@@ -16,12 +16,12 @@ class Departure extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'boat_id',
-        'departure_at',
-        'departure_port',
-        'itinerary_type',
-        'reserved_passengers',
-        'price_per_person',
+        'barco_id',
+        'fecha_salida',
+        'puerto_salida',
+        'itinerario_tipo',
+        'pasajeros_reservados',
+        'precio',
     ];
 
     /**
@@ -32,9 +32,9 @@ class Departure extends Model
     protected function casts(): array
     {
         return [
-            'departure_at' => 'datetime',
-            'reserved_passengers' => 'integer',
-            'price_per_person' => 'decimal:2',
+            'fecha_salida' => 'datetime',
+            'pasajeros_reservados' => 'integer',
+            'precio' => 'decimal:2',
         ];
     }
 
@@ -43,6 +43,6 @@ class Departure extends Model
      */
     public function boat(): BelongsTo
     {
-        return $this->belongsTo(Boat::class);
+        return $this->belongsTo(Boat::class, 'barco_id');
     }
 }

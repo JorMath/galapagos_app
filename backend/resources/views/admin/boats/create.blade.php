@@ -24,18 +24,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Nombre -->
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nombre del Barco</label>
-                    <input type="text" name="name" id="name" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('name') }}" required>
-                    @error('name')
+                    <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre del Barco</label>
+                    <input type="text" name="nombre" id="nombre" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('nombre') }}" required>
+                    @error('nombre')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Capacidad -->
                 <div>
-                    <label for="passenger_capacity" class="block text-sm font-medium text-gray-700 mb-2">Capacidad de Pasajeros</label>
-                    <input type="number" name="passenger_capacity" id="passenger_capacity" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('passenger_capacity') }}" min="1" required>
-                    @error('passenger_capacity')
+                    <label for="capacidad_pasajeros" class="block text-sm font-medium text-gray-700 mb-2">Capacidad de Pasajeros</label>
+                    <input type="number" name="capacidad_pasajeros" id="capacidad_pasajeros" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('capacidad_pasajeros') }}" min="1" required>
+                    @error('capacidad_pasajeros')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
@@ -73,16 +73,16 @@
 
                 <!-- Estado -->
                 <div class="flex items-center gap-3">
-                    <input type="checkbox" name="is_active" id="is_active" class="w-4 h-4 text-gray-900 border-gray-300 focus:ring-gray-900" {{ old('is_active', true) ? 'checked' : '' }}>
-                    <label for="is_active" class="text-sm font-medium text-gray-700">Barco activo</label>
+                    <input type="checkbox" name="activo" id="activo" class="w-4 h-4 text-gray-900 border-gray-300 focus:ring-gray-900" {{ old('activo', true) ? 'checked' : '' }}>
+                    <label for="activo" class="text-sm font-medium text-gray-700">Barco activo</label>
                 </div>
             </div>
 
             <!-- Descripción -->
             <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
-                <textarea name="description" id="description" rows="4" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none resize-none">{{ old('description') }}</textarea>
-                @error('description')
+                <label for="descripcion" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                <textarea name="descripcion" id="descripcion" rows="4" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none resize-none">{{ old('descripcion') }}</textarea>
+                @error('descripcion')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>

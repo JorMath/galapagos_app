@@ -35,8 +35,8 @@
                     @foreach($boats as $boat)
                         <tr>
                             <td>
-                                @if($boat->image_path)
-                                    <img src="{{ asset('storage/' . $boat->image_path) }}" alt="{{ $boat->name }}" class="w-14 h-14 object-cover border border-gray-200">
+                                @if($boat->imagen)
+                                    <img src="{{ asset('storage/' . $boat->imagen) }}" alt="{{ $boat->nombre }}" class="w-14 h-14 object-cover border border-gray-200">
                                 @else
                                     <div class="w-14 h-14 bg-gray-100 border border-gray-200 flex items-center justify-center">
                                         <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,16 +46,16 @@
                                 @endif
                             </td>
                             <td>
-                                <span class="font-medium text-gray-900">{{ $boat->name }}</span>
+                                <span class="font-medium text-gray-900">{{ $boat->nombre }}</span>
                             </td>
                             <td>
-                                <span class="text-gray-600">{{ $boat->passenger_capacity }} pasajeros</span>
+                                <span class="text-gray-600">{{ $boat->capacidad_pasajeros }} pasajeros</span>
                             </td>
                             <td>
-                                <span class="text-gray-500 max-w-xs block truncate">{{ $boat->description ?? 'Sin descripción' }}</span>
+                                <span class="text-gray-500 max-w-xs block truncate">{{ $boat->descripcion ?? 'Sin descripción' }}</span>
                             </td>
                             <td>
-                                @if($boat->is_active)
+                                @if($boat->activo)
                                     <span class="badge-elegant badge-active">Activo</span>
                                 @else
                                     <span class="badge-elegant badge-inactive">Inactivo</span>
@@ -71,7 +71,7 @@
                                     <form action="{{ route('boats.destroy', $boat) }}" method="POST" class="inline" id="delete-boat-{{ $boat->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="p-2 text-gray-400 hover:text-red-600 transition-colors" data-confirm-modal="open" data-form-id="delete-boat-{{ $boat->id }}" data-item-name="{{ $boat->name }}">
+                                        <button type="button" class="p-2 text-gray-400 hover:text-red-600 transition-colors" data-confirm-modal="open" data-form-id="delete-boat-{{ $boat->id }}" data-item-name="{{ $boat->nombre }}">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>

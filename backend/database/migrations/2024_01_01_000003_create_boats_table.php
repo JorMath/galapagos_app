@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('boats', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image_path')->nullable();
-            $table->integer('passenger_capacity');
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->string('nombre');
+            $table->string('imagen')->nullable();
+            $table->integer('capacidad_pasajeros');
+            $table->text('descripcion')->nullable();
+            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }

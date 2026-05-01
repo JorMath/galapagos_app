@@ -28,10 +28,10 @@ class UpdateDepartureRequest extends FormRequest
 
         return [
             'boat_id' => ['sometimes', 'required', 'exists:boats,id'],
-            'departure_at' => ['sometimes', 'required', 'date'],
-            'departure_port' => ['sometimes', 'required', 'string', 'max:255'],
-            'itinerary_type' => ['sometimes', 'required', Rule::in($itineraryTypes)],
-            'reserved_passengers' => [
+            'fecha_salida' => ['sometimes', 'required', 'date'],
+            'puerto_salida' => ['sometimes', 'required', 'string', 'max:255'],
+            'itinerario_tipo' => ['sometimes', 'required', Rule::in($itineraryTypes)],
+            'pasajeros_reservados' => [
                 'nullable',
                 'integer',
                 'min:0',
@@ -39,13 +39,13 @@ class UpdateDepartureRequest extends FormRequest
                     $boatId = $this->input('boat_id');
                     if ($boatId && $value !== null) {
                         $boat = Boat::find($boatId);
-                        if ($boat && $value > $boat->passenger_capacity) {
-                            $fail("La capacidad máxima del barco es {$boat->passenger_capacity} pasajeros.");
+                        if ($boat && $value > $boat->capacidad_pasajeros) {
+                            $fail("La capacidad máxima del barco es {$boat->capacidad_pasajeros} pasajeros.");
                         }
                     }
                 },
             ],
-            'price_per_person' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'precio' => ['sometimes', 'required', 'numeric', 'min:0'],
         ];
     }
 
@@ -59,17 +59,17 @@ class UpdateDepartureRequest extends FormRequest
         return [
             'boat_id.required' => 'El barco es requerido.',
             'boat_id.exists' => 'El barco seleccionado no existe.',
-            'departure_at.required' => 'La fecha y hora de salida es requerida.',
-            'departure_at.date' => 'La fecha debe ser válida.',
-            'departure_port.required' => 'El puerto de salida es requerido.',
-            'departure_port.max' => 'El nombre del puerto no puede exceder 255 caracteres.',
-            'itinerary_type.required' => 'El tipo de itinerario es requerido.',
-            'itinerary_type.in' => 'El tipo de itinerario seleccionado no es válido.',
-            'reserved_passengers.integer' => 'Los pasajeros reservados deben ser un número entero.',
-            'reserved_passengers.min' => 'Los pasajeros reservados no pueden ser negativos.',
-            'price_per_person.required' => 'El precio por persona es requerido.',
-            'price_per_person.numeric' => 'El precio debe ser un número.',
-            'price_per_person.min' => 'El precio no puede ser negativo.',
+            'fecha_salida.required' => 'La fecha y hora de salida es requerida.',
+            'fecha_salida.date' => 'La fecha debe ser válida.',
+            'puerto_salida.required' => 'El puerto de salida es requerido.',
+            'puerto_salida.max' => 'El nombre del puerto no puede exceder 255 caracteres.',
+            'itinerario_tipo.required' => 'El tipo de itinerario es requerido.',
+            'itinerario_tipo.in' => 'El tipo de itinerario seleccionado no es válido.',
+            'pasajeros_reservados.integer' => 'Los pasajeros reservados deben ser un número entero.',
+            'pasajeros_reservados.min' => 'Los pasajeros reservados no pueden ser negativos.',
+            'precio.required' => 'El precio por persona es requerido.',
+            'precio.numeric' => 'El precio debe ser un número.',
+            'precio.min' => 'El precio no puede ser negativo.',
         ];
     }
 }

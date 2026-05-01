@@ -16,11 +16,11 @@ class Boat extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'image_path',
-        'passenger_capacity',
-        'description',
-        'is_active',
+        'nombre',
+        'imagen',
+        'capacidad_pasajeros',
+        'descripcion',
+        'activo',
     ];
 
     /**
@@ -31,8 +31,8 @@ class Boat extends Model
     protected function casts(): array
     {
         return [
-            'is_active' => 'boolean',
-            'passenger_capacity' => 'integer',
+            'activo' => 'boolean',
+            'capacidad_pasajeros' => 'integer',
         ];
     }
 

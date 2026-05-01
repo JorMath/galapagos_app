@@ -29,9 +29,9 @@
                     <div class="relative">
                         <select name="boat_id" id="boat_id" class="form-input rounded-lg appearance-none pr-10" required>
                             <option value="">Seleccionar barco...</option>
-                            @foreach(\App\Models\Boat::where('is_active', true)->orderBy('name')->get() as $boat)
+                            @foreach(\App\Models\Boat::where('activo', true)->orderBy('nombre')->get() as $boat)
                                 <option value="{{ $boat->id }}" {{ old('boat_id', $departure->boat_id) == $boat->id ? 'selected' : '' }}>
-                                    {{ $boat->name }} ({{ $boat->passenger_capacity }} pasajeros)
+                                    {{ $boat->nombre }} ({{ $boat->capacidad_pasajeros }} pasajeros)
                                 </option>
                             @endforeach
                         </select>
@@ -50,10 +50,10 @@
                 <div>
                     <label for="itinerary_type" class="form-label">Tipo de Itinerario</label>
                     <div class="relative">
-                        <select name="itinerary_type" id="itinerary_type" class="form-input rounded-lg appearance-none pr-10" required>
+                        <select name="itinerario_tipo" id="itinerario_tipo" class="form-input rounded-lg appearance-none pr-10" required>
                             <option value="">Seleccionar itinerario...</option>
                             @foreach(\App\Enums\ItineraryType::cases() as $type)
-                                <option value="{{ $type->value }}" {{ old('itinerary_type', $departure->itinerary_type) == $type->value ? 'selected' : '' }}>
+                                <option value="{{ $type->value }}" {{ old('itinerario_tipo', $departure->itinerario_tipo) == $type->value ? 'selected' : '' }}>
                                     {{ $type->value }}
                                 </option>
                             @endforeach
@@ -71,25 +71,25 @@
 
                 <!-- Fecha y Hora -->
                 <div>
-                    <label for="departure_at" class="form-label">Fecha y Hora de Salida</label>
+                    <label for="fecha_salida" class="form-label">Fecha y Hora de Salida</label>
                     <div class="relative">
-                        <input type="datetime-local" name="departure_at" id="departure_at" class="form-input rounded-lg" value="{{ old('departure_at', \Carbon\Carbon::parse($departure->departure_at)->format('Y-m-d\TH:i')) }}" required>
+                        <input type="datetime-local" name="fecha_salida" id="fecha_salida" class="form-input rounded-lg" value="{{ old('fecha_salida', \Carbon\Carbon::parse($departure->fecha_salida)->format('Y-m-d\TH:i')) }}" required>
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
                         </div>
                     </div>
-                    @error('departure_at')
+                    @error('fecha_salida')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Puerto -->
                 <div>
-                    <label for="departure_port" class="form-label">Puerto de Salida</label>
+                    <label for="puerto_salida" class="form-label">Puerto de Salida</label>
                     <div class="relative">
-                        <input type="text" name="departure_port" id="departure_port" class="form-input rounded-lg" value="{{ old('departure_port', $departure->departure_port) }}" required>
+                        <input type="text" name="puerto_salida" id="puerto_salida" class="form-input rounded-lg" value="{{ old('puerto_salida', $departure->puerto_salida) }}" required>
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -97,7 +97,7 @@
                             </svg>
                         </div>
                     </div>
-                    @error('departure_port')
+                    @error('puerto_salida')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>

@@ -20,9 +20,9 @@ class StoreBoatRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        if ($this->has('is_active')) {
+        if ($this->has('activo')) {
             $this->merge([
-                'is_active' => $this->is_active === 'on' ? true : false,
+                'activo' => $this->activo === 'on' ? true : false,
             ]);
         }
     }
@@ -35,11 +35,11 @@ class StoreBoatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'max:2048'],
-            'passenger_capacity' => ['required', 'integer', 'min:1'],
-            'description' => ['nullable', 'string'],
-            'is_active' => ['nullable', 'boolean'],
+            'nombre' => ['required', 'string', 'max:255'],
+            'imagen' => ['nullable', 'image', 'max:2048'],
+            'capacidad_pasajeros' => ['required', 'integer', 'min:1'],
+            'descripcion' => ['nullable', 'string'],
+            'activo' => ['nullable', 'boolean'],
         ];
     }
 
@@ -51,13 +51,13 @@ class StoreBoatRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'El nombre del barco es requerido.',
-            'name.max' => 'El nombre no puede exceder 255 caracteres.',
-            'image.image' => 'El archivo debe ser una imagen.',
-            'image.max' => 'La imagen no puede exceder 2MB.',
-            'passenger_capacity.required' => 'La capacidad de pasajeros es requerida.',
-            'passenger_capacity.integer' => 'La capacidad debe ser un número entero.',
-            'passenger_capacity.min' => 'La capacidad mínima es 1.',
+            'nombre.required' => 'El nombre del barco es requerido.',
+            'nombre.max' => 'El nombre no puede exceder 255 caracteres.',
+            'imagen.image' => 'El archivo debe ser una imagen.',
+            'imagen.max' => 'La imagen no puede exceder 2MB.',
+            'capacidad_pasajeros.required' => 'La capacidad de pasajeros es requerida.',
+            'capacidad_pasajeros.integer' => 'La capacidad debe ser un número entero.',
+            'capacidad_pasajeros.min' => 'La capacidad mínima es 1.',
         ];
     }
 }
