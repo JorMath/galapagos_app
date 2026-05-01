@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ItineraryConversionService;
 use App\Http\Requests\ItineraryQueryRequest;
 use Illuminate\Http\JsonResponse;
+use InvalidArgumentException;
 
 class ItineraryController extends Controller
 {
@@ -28,27 +29,19 @@ class ItineraryController extends Controller
 
             $result = $this->conversionService->convert($tipo, $timezone);
 
-            // Si hay error del servicio, retornar con código apropiado
-            if (isset($result['error'])) {
-                return response()->json([
-                    'success' => false,
-                    'error' => $result['error'],
-                ], 400);
-            }
-
             return response()->json([
                 'success' => true,
                 'data' => $result,
-                'meta' => [
-                    'tipo' => $tipo,
-                    'timezone' => $timezone,
-                ],
             ]);
+        } catch (InvalidArgumentException $e) {
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 400);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'error' => 'Error al consultar itinerarios',
-                'mensaje' => config('app.debug') ? $e->getMessage() : null,
             ], 500);
         }
     }
