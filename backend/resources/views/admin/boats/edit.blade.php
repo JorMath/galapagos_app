@@ -58,15 +58,16 @@
                                     </svg>
                                 </div>
                                 <p class="text-sm text-gray-500 mb-4">Arrastra una imagen o haz clic para seleccionar</p>
-                                <label for="imagen" class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-                                    </svg>
-                                    <span>{{ $boat->imagen ? 'Cambiar' : 'Subir' }} Imagen</span>
-                                    <input type="file" name="imagen" id="imagen" class="sr-only" accept="image/*">
-                                </label>
                                 <p class="text-xs text-gray-400 mt-3">PNG, JPG hasta 2MB</p>
                             </div>
+                            <!-- Botón para cambiar imagen siempre visible -->
+                            <label for="imagen" class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors mt-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                                </svg>
+                                <span>{{ $boat->imagen ? 'Cambiar' : 'Subir' }} Imagen</span>
+                                <input type="file" name="imagen" id="imagen" class="sr-only" accept="image/*">
+                            </label>
                         </div>
                     </div>
                     @error('imagen')
