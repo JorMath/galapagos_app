@@ -55,7 +55,7 @@ const BoatDetailPage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link
           to="/"
-          className="btn-secondary mt-8 mb-6"
+          className="btn-secondary mt-6 mb-8 block w-fit"
         >
           Volver a los barcos
         </Link>
