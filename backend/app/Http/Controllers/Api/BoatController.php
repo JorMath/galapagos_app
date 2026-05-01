@@ -4,46 +4,27 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Boat;
-use App\Http\Requests\Api\BoatQueryRequest;
 use App\Http\Resources\BoatResource;
 use Illuminate\Http\JsonResponse;
 
 class BoatController extends Controller
 {
     /**
-     * Listar barcos activos (o todos con filtro)
+     * Listar barcos activos
      */
-    public function index(BoatQueryRequest $request): JsonResponse
+    public function index(): JsonResponse
     {
         try {
-            $data = $request->validated();
-
-            $query = Boat::query();
-
-            // Incluir inactivos si se especifica
-            if (!$request->has('incluir_inactivos')) {
-                $query->where('activo', true);
-            }
-
-            // Ordenar
-            $ordenarPor = $data['ordenar_por'] ?? 'nombre';
-            $orden = $data['orden'] ?? 'asc';
-            $query->orderBy($ordenarPor, $orden);
-
-            $boats = $query->get();
+            $boats = Boat::where('activo', true)->get();
 
             return response()->json([
                 'success' => true,
                 'data' => BoatResource::collection($boats),
-                'meta' => [
-                    'total' => $boats->count(),
-                ],
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'error' => 'Error al obtener los barcos',
-                'mensaje' => config('app.debug') ? $e->getMessage() : null,
             ], 500);
         }
     }
@@ -62,7 +43,6 @@ class BoatController extends Controller
             return response()->json([
                 'success' => false,
                 'error' => 'Error al obtener el barco',
-                'mensaje' => config('app.debug') ? $e->getMessage() : null,
             ], 500);
         }
     }
