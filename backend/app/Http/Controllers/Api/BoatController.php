@@ -13,8 +13,8 @@ class BoatController extends Controller
         return BoatResource::collection($boats);
     }
 
-    public function show(Boat $boat)
+    public function show(Boat $barco)
     {
-        return new BoatResource($boat);
+        return new BoatResource($barco);
     }
 }
