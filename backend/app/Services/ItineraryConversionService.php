@@ -29,21 +29,29 @@ class ItineraryConversionService
             ];
         }
 
+        // Validar que el timezone sea válido
+        if (!in_array($timezone, timezone_identifiers_list())) {
+            return [
+                'error' => 'Zona horaria inválida',
+                'timezone_valido' => false
+            ];
+        }
+
         // Obtener las salidas para ese tipo de itinerario
         $departures = Departure::with('boat')
-            ->where('itinerary_type', $tipoItinerario)
-            ->orderBy('departure_at')
+            ->where('itinerario_tipo', $tipoItinerario)
+            ->orderBy('fecha_salida')
             ->get();
 
         $salidas = [];
 
         foreach ($departures as $departure) {
             // Fecha de salida en UTC (Galápagos)
-            $salidaGalapagos = Carbon::parse($departure->departure_at)
+            $salidaGalapagos = Carbon::parse($departure->fecha_salida)
                 ->setTimezone($galapagosTimezone);
             
             // Fecha de salida convertida a la timezone del usuario
-            $salidaLocal = Carbon::parse($departure->departure_at)
+            $salidaLocal = Carbon::parse($departure->fecha_salida)
                 ->setTimezone($timezone);
 
             // Calcular retorno (asumiendo duración del tour)
@@ -52,13 +60,13 @@ class ItineraryConversionService
             $retornoLocal = $salidaLocal->copy()->addDays($diasTour);
 
             $salidas[] = [
-                'barco' => $departure->boat->name,
-                'puerto' => $departure->departure_port,
+                'barco' => $departure->boat->nombre,
+                'puerto' => $departure->puerto_salida,
                 'salida_galapagos' => $salidaGalapagos->format('Y-m-d H:i:s (P)'),
                 'salida_local' => $salidaLocal->format('Y-m-d H:i:s (P)'),
                 'retorno_galapagos' => $retornoGalapagos->format('Y-m-d H:i:s (P)'),
                 'retorno_local' => $retornoLocal->format('Y-m-d H:i:s (P)'),
-                'precio' => (float) $departure->price_per_person,
+                'precio' => (float) $departure->precio,
             ];
         }
 

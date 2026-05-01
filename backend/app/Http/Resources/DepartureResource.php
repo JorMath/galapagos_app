@@ -10,12 +10,12 @@ class DepartureResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'boat_name' => $this->boat->name,
-            'departure_at' => $this->departure_at,
-            'departure_port' => $this->departure_port,
-            'itinerary_type' => $this->itinerary_type,
-            'price_per_person' => $this->price_per_person,
-            'reserved_passengers' => $this->reserved_passengers,
+            'barco' => $this->boat->nombre,
+            'fecha_salida' => $this->fecha_salida,
+            'puerto_salida' => $this->puerto_salida,
+            'itinerario_tipo' => $this->itinerario_tipo,
+            'precio' => $this->precio,
+            'pasajeros_reservados' => $this->pasajeros_reservados,
         ];
     }
 }

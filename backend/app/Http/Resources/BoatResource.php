@@ -10,11 +10,11 @@ class BoatResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'passenger_capacity' => $this->passenger_capacity,
-            'description' => $this->description,
-            'is_active' => $this->is_active,
-            'image_url' => $this->image_path ? asset('storage/' . $this->image_path) : null,
+            'nombre' => $this->nombre,
+            'capacidad_pasajeros' => $this->capacidad_pasajeros,
+            'descripcion' => $this->descripcion,
+            'activo' => $this->activo,
+            'imagen_url' => $this->imagen ? asset('storage/' . $this->imagen) : null,
         ];
     }
 }

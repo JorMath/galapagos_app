@@ -9,7 +9,7 @@ class BoatController extends Controller
 {
     public function index()
     {
-        $boats = Boat::where('is_active', true)->get();
+        $boats = Boat::where('activo', true)->get();
         return BoatResource::collection($boats);
     }
 
