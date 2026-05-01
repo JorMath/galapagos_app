@@ -27,7 +27,7 @@ class UpdateDepartureRequest extends FormRequest
         $itineraryTypes = array_column(ItineraryType::cases(), 'value');
 
         return [
-            'boat_id' => ['sometimes', 'required', 'exists:boats,id'],
+            'barco_id' => ['sometimes', 'required', 'exists:boats,id'],
             'fecha_salida' => ['sometimes', 'required', 'date'],
             'puerto_salida' => ['sometimes', 'required', 'string', 'max:255'],
             'itinerario_tipo' => ['sometimes', 'required', Rule::in($itineraryTypes)],
@@ -36,7 +36,7 @@ class UpdateDepartureRequest extends FormRequest
                 'integer',
                 'min:0',
                 function ($attribute, $value, $fail) {
-                    $boatId = $this->input('boat_id');
+                    $boatId = $this->input('barco_id');
                     if ($boatId && $value !== null) {
                         $boat = Boat::find($boatId);
                         if ($boat && $value > $boat->capacidad_pasajeros) {
@@ -57,8 +57,8 @@ class UpdateDepartureRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'boat_id.required' => 'El barco es requerido.',
-            'boat_id.exists' => 'El barco seleccionado no existe.',
+            'barco_id.required' => 'El barco es requerido.',
+            'barco_id.exists' => 'El barco seleccionado no existe.',
             'fecha_salida.required' => 'La fecha y hora de salida es requerida.',
             'fecha_salida.date' => 'La fecha debe ser válida.',
             'puerto_salida.required' => 'El puerto de salida es requerido.',

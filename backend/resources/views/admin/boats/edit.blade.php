@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('header')
-    <div class="flex items-center gap-4 animate-entry">
+    <div class="flex items-center gap-4 animate-enter">
         <a href="{{ route('boats.index') }}" class="text-gray-400 hover:text-gray-900 transition-colors p-1">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
@@ -17,7 +17,7 @@
 @section('content')
     @include('partials.alert')
 
-    <div class="card-elegant p-6 animate-entry delay-100">
+    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm animate-enter delay-100">
         <form action="{{ route('boats.update', $boat) }}" method="POST" enctype="multipart/form-data" class="space-y-8">
             @csrf
             @method('PUT')
@@ -26,7 +26,7 @@
                 <!-- Nombre -->
                 <div>
                     <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre del Barco</label>
-                    <input type="text" name="nombre" id="nombre" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('nombre', $boat->nombre) }}" required>
+                    <input type="text" name="nombre" id="nombre" class="w-full px-4 py-3 text-sm text-gray-900 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200" value="{{ old('nombre', $boat->nombre) }}" required>
                     @error('nombre')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -35,7 +35,7 @@
                 <!-- Capacidad -->
                 <div>
                     <label for="capacidad_pasajeros" class="block text-sm font-medium text-gray-700 mb-2">Capacidad de Pasajeros</label>
-                    <input type="number" name="capacidad_pasajeros" id="capacidad_pasajeros" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none" value="{{ old('capacidad_pasajeros', $boat->capacidad_pasajeros) }}" min="1" required>
+                    <input type="number" name="capacidad_pasajeros" id="capacidad_pasajeros" class="w-full px-4 py-3 text-sm text-gray-900 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200" value="{{ old('capacidad_pasajeros', $boat->capacidad_pasajeros) }}" min="1" required>
                     @error('capacidad_pasajeros')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -45,51 +45,38 @@
                 <div class="md:col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Imagen del Barco</label>
                     <div class="relative" id="dropzone-container">
-                        <div id="dropzone" class="dropzone-elegant flex flex-col items-center justify-center px-6 py-10 cursor-pointer group">
-                            <!-- Preview Image -->
+                        <div id="dropzone" class="border-2 border-dashed border-gray-300 flex flex-col items-center justify-center px-6 py-10 cursor-pointer group hover:border-gray-400 transition-colors rounded-lg">
                             @if($boat->imagen)
-                                <img id="preview" src="{{ asset('storage/' . $boat->imagen) }}" class="max-h-56 w-auto object-contain mb-4 border border-gray-200" alt="Imagen actual">
+                                <img id="preview" src="{{ asset('storage/' . $boat->imagen) }}" class="max-h-56 w-auto object-contain mb-4 rounded-lg" alt="Imagen actual">
                             @else
                                 <img id="preview" class="max-h-56 w-auto object-contain mb-4 hidden" alt="Preview">
                             @endif
-                            <!-- Placeholder -->
                             <div id="placeholder" class="text-center {{ $boat->imagen ? 'hidden' : '' }}">
-                                <div class="mx-auto w-14 h-14 mb-4 bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+                                <div class="mx-auto w-14 h-14 mb-4 bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors rounded-lg">
                                     <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                     </svg>
                                 </div>
                                 <p class="text-sm text-gray-500 mb-4">Arrastra una imagen o haz clic para seleccionar</p>
-                                <label for="image" class="btn-secondary cursor-pointer inline-flex items-center gap-2 px-4 py-2 text-sm">
+                                <label for="imagen" class="cursor-pointer inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                                     </svg>
-                                    <span>{{ $boat->image_path ? 'Cambiar' : 'Subir' }} Imagen</span>
-                                    <input type="file" name="image" id="image" class="sr-only" accept="image/*">
+                                    <span>{{ $boat->imagen ? 'Cambiar' : 'Subir' }} Imagen</span>
+                                    <input type="file" name="imagen" id="imagen" class="sr-only" accept="image/*">
                                 </label>
                                 <p class="text-xs text-gray-400 mt-3">PNG, JPG hasta 2MB</p>
                             </div>
-                            @if($boat->image_path)
-                                <div id="upload-btn" class="hidden">
-                                    <label for="image" class="btn-secondary cursor-pointer inline-flex items-center gap-2 px-4 py-2 text-sm">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-                                        </svg>
-                                        <span>Cambiar Imagen</span>
-                                        <input type="file" name="image" id="image" class="sr-only" accept="image/*">
-                                    </label>
-                                </div>
-                            @endif
                         </div>
                     </div>
-                    @error('image')
+                    @error('imagen')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Estado -->
                 <div class="flex items-center gap-3">
-                    <input type="checkbox" name="activo" id="activo" class="w-4 h-4 text-gray-900 border-gray-300 focus:ring-gray-900" {{ old('activo', $boat->activo) ? 'checked' : '' }}>
+                    <input type="checkbox" name="activo" id="activo" class="w-4 h-4 text-gray-900 border-gray-300 rounded focus:ring-gray-900" {{ old('activo', $boat->activo) ? 'checked' : '' }}>
                     <label for="activo" class="text-sm font-medium text-gray-700">Barco activo</label>
                 </div>
             </div>
@@ -97,7 +84,7 @@
             <!-- Descripción -->
             <div>
                 <label for="descripcion" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
-                <textarea name="descripcion" id="descripcion" rows="4" class="input-elegant w-full px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none resize-none">{{ old('descripcion', $boat->descripcion) }}</textarea>
+                <textarea name="descripcion" id="descripcion" rows="4" class="w-full px-4 py-3 text-sm text-gray-900 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200 resize-none">{{ old('descripcion', $boat->descripcion) }}</textarea>
                 @error('descripcion')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -105,17 +92,16 @@
 
             <!-- Botones -->
             <div class="flex justify-end gap-4 pt-6 border-t border-gray-100">
-                <a href="{{ route('boats.index') }}" class="btn-secondary px-5 py-2.5 text-sm font-medium">Cancelar</a>
-                <button type="submit" class="btn-primary px-6 py-2.5 text-sm font-medium text-white tracking-wide">Actualizar Barco</button>
+                <a href="{{ route('boats.index') }}" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Cancelar</a>
+                <button type="submit" class="px-6 py-2.5 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 tracking-wide transition-all duration-200 shadow-sm hover:shadow-md">Actualizar Barco</button>
             </div>
         </form>
     </div>
 
     <script>
-        const imageInput = document.getElementById('image');
+        const imageInput = document.getElementById('imagen');
         const preview = document.getElementById('preview');
         const placeholder = document.getElementById('placeholder');
-        const uploadBtn = document.getElementById('upload-btn');
 
         imageInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -125,9 +111,6 @@
                     preview.src = e.target.result;
                     preview.classList.remove('hidden');
                     placeholder.classList.add('hidden');
-                    if (uploadBtn) {
-                        uploadBtn.classList.remove('hidden');
-                    }
                 }
                 reader.readAsDataURL(file);
             }

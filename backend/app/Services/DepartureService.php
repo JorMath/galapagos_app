@@ -42,7 +42,7 @@ class DepartureService
     public function getDepartures(Request $request): LengthAwarePaginator
     {
         return Departure::with('boat')
-            ->orderBy('departure_at', 'desc')
+            ->orderBy('fecha_salida', 'desc')
             ->paginate(10)
             ->withQueryString();
     }
@@ -52,6 +52,6 @@ class DepartureService
      */
     public function getActiveBoats(): Collection
     {
-        return Boat::where('is_active', true)->orderBy('name')->get();
+        return Boat::where('activo', true)->orderBy('nombre')->get();
     }
 }

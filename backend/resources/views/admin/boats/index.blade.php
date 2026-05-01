@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('header')
-    <div class="flex justify-between items-center animate-entry">
+    <div class="flex justify-between items-center animate-enter">
         <div>
             <h1 class="font-display text-2xl font-medium text-gray-900 tracking-wide">Barcos</h1>
             <p class="mt-1 text-sm text-gray-500">Gestiona la flota de barcos turísticos</p>
         </div>
-        <a href="{{ route('boats.create') }}" class="btn-primary flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white tracking-wide">
+        <a href="{{ route('boats.create') }}" class="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 rounded-lg tracking-wide transition-all duration-200 shadow-sm hover:shadow-md">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -18,23 +18,23 @@
 @section('content')
     @include('partials.alert')
 
-    <div class="card-elegant overflow-hidden animate-entry delay-100">
+    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm animate-enter delay-100">
         <div class="overflow-x-auto">
-            <table class="table-elegant">
+            <table class="w-full text-left border-collapse">
                 <thead>
                     <tr>
-                        <th class="w-24">Imagen</th>
-                        <th>Nombre</th>
-                        <th>Capacidad</th>
-                        <th>Descripción</th>
-                        <th class="w-24">Estado</th>
-                        <th class="w-28 text-right">Acciones</th>
+                        <th class="w-24 px-6 py-4 bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Imagen</th>
+                        <th class="px-6 py-4 bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Nombre</th>
+                        <th class="px-6 py-4 bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Capacidad</th>
+                        <th class="px-6 py-4 bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">Descripción</th>
+                        <th class="w-24 px-6 py-4 bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200 text-center">Estado</th>
+                        <th class="w-28 px-6 py-4 bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200 text-right">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($boats as $boat)
-                        <tr>
-                            <td>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 border-b border-gray-100">
                                 @if($boat->imagen)
                                     <img src="{{ asset('storage/' . $boat->imagen) }}" alt="{{ $boat->nombre }}" class="w-14 h-14 object-cover border border-gray-200">
                                 @else
@@ -45,23 +45,23 @@
                                     </div>
                                 @endif
                             </td>
-                            <td>
+                            <td class="px-6 py-4 border-b border-gray-100">
                                 <span class="font-medium text-gray-900">{{ $boat->nombre }}</span>
                             </td>
-                            <td>
+                            <td class="px-6 py-4 border-b border-gray-100">
                                 <span class="text-gray-600">{{ $boat->capacidad_pasajeros }} pasajeros</span>
                             </td>
-                            <td>
+                            <td class="px-6 py-4 border-b border-gray-100">
                                 <span class="text-gray-500 max-w-xs block truncate">{{ $boat->descripcion ?? 'Sin descripción' }}</span>
                             </td>
-                            <td>
+                            <td class="px-6 py-4 border-b border-gray-100 text-center">
                                 @if($boat->activo)
-                                    <span class="badge-elegant badge-active">Activo</span>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Activo</span>
                                 @else
-                                    <span class="badge-elegant badge-inactive">Inactivo</span>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Inactivo</span>
                                 @endif
                             </td>
-                            <td>
+                            <td class="px-6 py-4 border-b border-gray-100">
                                 <div class="flex items-center justify-end gap-1">
                                     <a href="{{ route('boats.edit', $boat) }}" class="p-2 text-gray-400 hover:text-gray-900 transition-colors">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

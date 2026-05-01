@@ -14,9 +14,8 @@ class BoatService
      */
     public function createBoat(array $data): Boat
     {
-        if (!empty($data['image'])) {
-            $data['image_path'] = $data['image']->store('boats', 'public');
-            unset($data['image']);
+        if (!empty($data['imagen'])) {
+            $data['imagen'] = $data['imagen']->store('boats', 'public');
         }
 
         return Boat::create($data);
@@ -27,13 +26,12 @@ class BoatService
      */
     public function updateBoat(Boat $boat, array $data): Boat
     {
-        if (!empty($data['image'])) {
+        if (!empty($data['imagen'])) {
             // Delete old image if exists
-            if ($boat->image_path) {
-                Storage::disk('public')->delete($boat->image_path);
+            if ($boat->imagen) {
+                Storage::disk('public')->delete($boat->imagen);
             }
-            $data['image_path'] = $data['image']->store('boats', 'public');
-            unset($data['image']);
+            $data['imagen'] = $data['imagen']->store('boats', 'public');
         }
 
         $boat->update($data);
@@ -46,8 +44,8 @@ class BoatService
      */
     public function deleteBoat(Boat $boat): void
     {
-        if ($boat->image_path) {
-            Storage::disk('public')->delete($boat->image_path);
+        if ($boat->imagen) {
+            Storage::disk('public')->delete($boat->imagen);
         }
 
         $boat->delete();
