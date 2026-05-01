@@ -22,11 +22,34 @@ class ItineraryController extends Controller
      */
     public function consulta(ItineraryQueryRequest $request): JsonResponse
     {
-        $tipo = $request->validated('tipo');
-        $timezone = $request->validated('timezone');
+        try {
+            $tipo = $request->validated('tipo');
+            $timezone = $request->validated('timezone');
 
-        $result = $this->conversionService->convert($tipo, $timezone);
+            $result = $this->conversionService->convert($tipo, $timezone);
 
-        return response()->json($result);
+            // Si hay error del servicio, retornar con código apropiado
+            if (isset($result['error'])) {
+                return response()->json([
+                    'success' => false,
+                    'error' => $result['error'],
+                ], 400);
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => $result,
+                'meta' => [
+                    'tipo' => $tipo,
+                    'timezone' => $timezone,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Error al consultar itinerarios',
+                'mensaje' => config('app.debug') ? $e->getMessage() : null,
+            ], 500);
+        }
     }
 }

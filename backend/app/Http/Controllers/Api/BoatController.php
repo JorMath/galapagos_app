@@ -1,20 +1,69 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Boat;
+use App\Http\Requests\Api\BoatQueryRequest;
 use App\Http\Resources\BoatResource;
+use Illuminate\Http\JsonResponse;
 
 class BoatController extends Controller
 {
-    public function index()
+    /**
+     * Listar barcos activos (o todos con filtro)
+     */
+    public function index(BoatQueryRequest $request): JsonResponse
     {
-        $boats = Boat::where('activo', true)->get();
-        return BoatResource::collection($boats);
+        try {
+            $data = $request->validated();
+
+            $query = Boat::query();
+
+            // Incluir inactivos si se especifica
+            if (!$request->has('incluir_inactivos')) {
+                $query->where('activo', true);
+            }
+
+            // Ordenar
+            $ordenarPor = $data['ordenar_por'] ?? 'nombre';
+            $orden = $data['orden'] ?? 'asc';
+            $query->orderBy($ordenarPor, $orden);
+
+            $boats = $query->get();
+
+            return response()->json([
+                'success' => true,
+                'data' => BoatResource::collection($boats),
+                'meta' => [
+                    'total' => $boats->count(),
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Error al obtener los barcos',
+                'mensaje' => config('app.debug') ? $e->getMessage() : null,
+            ], 500);
+        }
     }
 
-    public function show(Boat $barco)
+    /**
+     * Ver un barco específico
+     */
+    public function show(Boat $barco): JsonResponse
     {
-        return new BoatResource($barco);
+        try {
+            return response()->json([
+                'success' => true,
+                'data' => new BoatResource($barco),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Error al obtener el barco',
+                'mensaje' => config('app.debug') ? $e->getMessage() : null,
+            ], 500);
+        }
     }
 }
