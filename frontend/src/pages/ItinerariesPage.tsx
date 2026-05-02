@@ -48,7 +48,7 @@ const ItinerariesPage = () => {
           <form onSubmit={handleSearch} className="space-y-6">
             {/* Itinerary Type Selector */}
             <div>
-              <label className="form-label">Tipo de Itinerario</label>
+              <p className="form-label">Tipo de Itinerario</p>
               <div className="flex flex-wrap gap-3">
                 {itineraryTypes.map((type) => (
                   <button
@@ -107,8 +107,8 @@ const ItinerariesPage = () => {
 
             {data.salidas && data.salidas.length > 0 ? (
               <div>
-                {data.salidas.map((departure, index) => (
-                  <DepartureCard key={index} departure={departure} />
+                {data.salidas.map((departure, idx) => (
+                  <DepartureCard key={`departure-${idx}`} departure={departure} />
                 ))}
               </div>
             ) : (

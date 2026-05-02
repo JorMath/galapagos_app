@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class BoatResource extends JsonResource
             'capacidad_pasajeros' => $this->capacidad_pasajeros,
             'descripcion' => $this->descripcion,
             'activo' => $this->activo,
-            'imagen_url' => $this->imagen ? asset('storage/' . $this->imagen) : null,
+            'imagen_url' => $this->imagen ? asset('storage/'.$this->imagen) : null,
         ];
     }
 }

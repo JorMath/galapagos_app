@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\ItineraryType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Enums\ItineraryType;
 
 class ItineraryQueryRequest extends FormRequest
 {

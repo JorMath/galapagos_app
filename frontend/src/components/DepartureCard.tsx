@@ -9,12 +9,10 @@ interface DepartureCardProps {
  * DepartureCard component - displays departure with converted times
  */
 const DepartureCard = ({ departure }: DepartureCardProps) => {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('es-EC', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(price);
-  };
+  const formatPrice = (price: number) => new Intl.NumberFormat('es-EC', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(price);
 
   return (
     <Card className="mb-4">

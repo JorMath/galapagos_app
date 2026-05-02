@@ -33,16 +33,6 @@ export interface Departure {
 }
 
 /**
- * Itinerary response from /api/itinerarios/consulta
- */
-export interface ItineraryResponse {
-  itinerario: string;
-  timezone_consulta: string;
-  salidas: DepartureTime[];
-  mensaje?: string;
-}
-
-/**
  * Departure with converted times
  */
 export interface DepartureTime {
@@ -53,6 +43,16 @@ export interface DepartureTime {
   retorno_galapagos: string;
   retorno_local: string;
   precio: number;
+}
+
+/**
+ * Itinerary response from /api/itinerarios/consulta
+ */
+export interface ItineraryResponse {
+  itinerario: string;
+  timezone_consulta: string;
+  salidas: DepartureTime[];
+  mensaje?: string;
 }
 
 /**
@@ -96,11 +96,11 @@ export interface UseItinerariesResult {
   data: ItineraryResponse | null;
   loading: boolean;
   error: string | null;
-  query: (tipo: string, timezone: string) => Promise<void>;
+  query: (_tipo: string, _timezone: string) => Promise<void>;
 }
 
 export interface UseTimezoneResult {
   timezone: Timezone;
-  setTimezone: (tz: Timezone) => void;
+  setTimezone: (_tz: Timezone) => void;
   detected: boolean;
 }

@@ -10,10 +10,9 @@ interface CardProps {
 /**
  * Card component with slots for header, body, footer
  */
-const Card = ({ children, header, footer, className = '' }: CardProps) => {
-  return (
-    <div className={`card ${className}`}>
-      {header && (
+const Card = ({ children, header, footer, className = '' }: CardProps) => (
+  <div className={`card ${className}`}>
+    {header && (
         <div className="mb-4 border-b border-border pb-4">
           {header}
         </div>
@@ -26,6 +25,5 @@ const Card = ({ children, header, footer, className = '' }: CardProps) => {
       )}
     </div>
   );
-};
 
 export default Card;

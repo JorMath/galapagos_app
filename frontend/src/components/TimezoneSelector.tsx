@@ -3,7 +3,7 @@ import type { Timezone } from '../types';
 
 interface TimezoneSelectorProps {
   timezone: Timezone;
-  setTimezone: (tz: Timezone) => void;
+  setTimezone: (_tz: Timezone) => void;
   detected?: boolean;
 }
 

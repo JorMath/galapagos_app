@@ -4,8 +4,8 @@ namespace App\Services;
 
 use App\Models\Boat;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 use InvalidArgumentException;
 
 class BoatService
@@ -17,7 +17,7 @@ class BoatService
     {
         $this->validateBoatData($data);
 
-        if (!empty($data['imagen'])) {
+        if (! empty($data['imagen'])) {
             $data['imagen'] = $data['imagen']->store('boats', 'public');
         }
 
@@ -31,7 +31,7 @@ class BoatService
     {
         $this->validateBoatData($data, $boat->id);
 
-        if (!empty($data['imagen'])) {
+        if (! empty($data['imagen'])) {
             if ($boat->imagen) {
                 Storage::disk('public')->delete($boat->imagen);
             }
@@ -89,18 +89,18 @@ class BoatService
         }
 
         // Capacidad debe ser positiva
-        if (!empty($data['capacidad_pasajeros'])) {
-            if (!is_numeric($data['capacidad_pasajeros']) || $data['capacidad_pasajeros'] < 1) {
+        if (! empty($data['capacidad_pasajeros'])) {
+            if (! is_numeric($data['capacidad_pasajeros']) || $data['capacidad_pasajeros'] < 1) {
                 $errors[] = 'La capacidad de pasajeros debe ser un número positivo';
             }
         }
 
         // Imagen debe ser archivo válido si se proporciona
-        if (!empty($data['imagen']) && !$data['imagen']->isValid()) {
+        if (! empty($data['imagen']) && ! $data['imagen']->isValid()) {
             $errors[] = 'La imagen no es válida';
         }
 
-        if (!empty($errors)) {
+        if (! empty($errors)) {
             throw new InvalidArgumentException(implode('. ', $errors));
         }
     }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Boat;
 use App\Http\Resources\BoatResource;
+use App\Models\Boat;
 use Illuminate\Http\JsonResponse;
 
 class BoatController extends Controller

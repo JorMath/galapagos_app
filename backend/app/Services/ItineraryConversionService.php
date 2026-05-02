@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Departure;
 use App\Enums\ItineraryType;
+use App\Models\Departure;
 use Carbon\Carbon;
 use InvalidArgumentException;
 
@@ -11,25 +11,25 @@ class ItineraryConversionService
 {
     /**
      * Convertir salidas a la zona horaria del usuario
-     * 
-     * @param string $tipoItinerario Tipo de itinerario (4D/3N, 5D/4N, 8D/7N)
-     * @param string $timezone Zona horaria del usuario
-     * @return array
+     *
+     * @param  string  $tipoItinerario  Tipo de itinerario (4D/3N, 5D/4N, 8D/7N)
+     * @param  string  $timezone  Zona horaria del usuario
+     *
      * @throws InvalidArgumentException Si los parámetros son inválidos
      */
     public function convert(string $tipoItinerario, string $timezone): array
     {
         // Validar tipo de itinerario
         $validTypes = array_column(ItineraryType::cases(), 'value');
-        if (!in_array($tipoItinerario, $validTypes)) {
+        if (! in_array($tipoItinerario, $validTypes)) {
             throw new InvalidArgumentException(
-                'Tipo de itinerario inválido. Valores permitidos: ' . implode(', ', $validTypes)
+                'Tipo de itinerario inválido. Valores permitidos: '.implode(', ', $validTypes)
             );
         }
 
         // Validar timezone
         $validTimezones = timezone_identifiers_list();
-        if (!in_array($timezone, $validTimezones)) {
+        if (! in_array($timezone, $validTimezones)) {
             throw new InvalidArgumentException('Zona horaria inválida');
         }
 
@@ -48,7 +48,7 @@ class ItineraryConversionService
                 'itinerario' => $tipoItinerario,
                 'timezone_consulta' => $timezone,
                 'salidas' => [],
-                'mensaje' => 'No hay salidas disponibles para este itinerario'
+                'mensaje' => 'No hay salidas disponibles para este itinerario',
             ];
         }
 
@@ -56,14 +56,14 @@ class ItineraryConversionService
 
         foreach ($departures as $departure) {
             // Verificar que el barco existe
-            if (!$departure->boat) {
+            if (! $departure->boat) {
                 continue;
             }
 
             // Fecha de salida en UTC (Galápagos)
             $salidaGalapagos = Carbon::parse($departure->fecha_salida)
                 ->setTimezone($galapagosTimezone);
-            
+
             // Fecha de salida convertida a la timezone del usuario
             $salidaLocal = Carbon::parse($departure->fecha_salida)
                 ->setTimezone($timezone);
@@ -87,7 +87,7 @@ class ItineraryConversionService
         return [
             'itinerario' => $tipoItinerario,
             'timezone_consulta' => $timezone,
-            'salidas' => $salidas
+            'salidas' => $salidas,
         ];
     }
 }

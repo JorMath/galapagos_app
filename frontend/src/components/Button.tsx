@@ -29,7 +29,7 @@ const Button = ({
 
   return (
     <button
-      type={type}
+      type={type === 'submit' ? 'submit' : 'button'}
       disabled={disabled}
       className={classes}
       {...props}

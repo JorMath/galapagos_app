@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BoatController;
 use App\Http\Controllers\Api\DepartureController;
 use App\Http\Controllers\Api\ItineraryController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

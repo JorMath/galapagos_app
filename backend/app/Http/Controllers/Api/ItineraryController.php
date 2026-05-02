@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\ItineraryConversionService;
 use App\Http\Requests\ItineraryQueryRequest;
+use App\Services\ItineraryConversionService;
 use Illuminate\Http\JsonResponse;
 use InvalidArgumentException;
 

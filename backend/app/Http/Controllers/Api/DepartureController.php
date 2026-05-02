@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Departure;
 use App\Http\Resources\DepartureResource;
+use App\Models\Departure;
 use Illuminate\Http\JsonResponse;
 
 class DepartureController extends Controller

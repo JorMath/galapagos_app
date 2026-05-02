@@ -4,9 +4,9 @@ namespace App\Services;
 
 use App\Models\Boat;
 use App\Models\Departure;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 class DepartureService
 {
